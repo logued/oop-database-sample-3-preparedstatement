@@ -1,6 +1,7 @@
 /**
- * Feb 2022
- * Connect to Database and execute Prepared Statement to INSERT a row in a database.
+ * Jan 2025
+ * Connect to Database and execute a Prepared Statement to INSERT a row in a database.
+ * Prepared statements should be used to prevent "SQL Injection" attacks on a database.
  */
 package dkit.oop;
 
@@ -26,7 +27,13 @@ public class App {
         String lastName = "Haughey";      // from input boxes in the User Interface of the
         String birthDate = "1950-02-01";  // Java application.
 
+        // Prepare the Query String using "?" to indicate field parameters.
+        //
         String query1 = "INSERT INTO test.Customers VALUES (null, ?, ?, ?)";
+
+        // 'null' tell the prepared statement that we want to allow the database
+        // to assign an id using auto-increment.
+        // i.e. use it with auto-increment fields.
 
         // Try-with-Resources style
         try (Connection connection = DriverManager.getConnection(fullURL, userName, password);
@@ -41,7 +48,7 @@ public class App {
 //          1 corresponds to first question mark, 2 to the second one, and so on...
 //          As the first field is an Auto-Increment field in the database, we specify a null value for it.
 
-            preparedStatement1.setString(1, firstName);
+            preparedStatement1.setString(1, firstName);  // bind 'firstName" with the first "?" parameter
             preparedStatement1.setString(2, lastName);
             preparedStatement1.setDate(3, Date.valueOf(birthDate));
 
@@ -54,6 +61,11 @@ public class App {
 
             // Execute the Prepared Statement and get a result set
             ResultSet resultSet = statement.executeQuery("select * from Customers");
+
+            // Note above that we use executeQuery() for a select query to retrieve data,
+            // but,
+            // we use executeUpdate() for prepared statements that modify the database
+            // such as insert, update and delete queries.
 
             while (resultSet.next()) {
                 // It is possible to get the columns via name (as shown)
@@ -80,3 +92,13 @@ public class App {
         }
     }
 }
+
+//TODO Q1.
+// Run the program and check that it works.  Each time you run the program
+// it adds an extra "Charlie Haughey" row (with a new ID.)
+
+//TODO Q2.
+// Create and execute a prepared statement that will update record with ID 101
+// by setting the first name to "Robert" and the last name to "Zimmerman".
+// Execute and check that the change has been made.
+
