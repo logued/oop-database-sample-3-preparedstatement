@@ -8,10 +8,10 @@ package dkit.oop;
 import java.sql.*;
 import java.time.LocalDate;
 
-public class App {
+public class AppMain {
     public static void main(String[] args) {
-        App app = new App();
-        app.start();
+        AppMain appMain = new AppMain();
+        appMain.start();
     }
 
     public void start() {
@@ -96,9 +96,11 @@ public class App {
 //TODO Q1.
 // Run the program and check that it works.  Each time you run the program
 // it adds an extra "Charlie Haughey" row (with a new ID.)
+// Check to see that this is the case.
 
 //TODO Q2.
 // Create and execute a prepared statement that will update record with ID 101
 // by setting the first name to "Robert" and the last name to "Zimmerman".
+// Use a PreparedStatement (sql UPDATE)
 // Execute and check that the change has been made.
 
