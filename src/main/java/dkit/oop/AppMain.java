@@ -71,11 +71,11 @@ public class AppMain {
                 // It is possible to get the columns via name (as shown)
                 // or via the column number.  First column is indexed as 1 (and not 0 as in arrays)
                 // e.g. resultSet.getString(2); gets the second column.
-                int customerId = resultSet.getInt("custID");
-                String fName = resultSet.getString("firstName");
+                int customerId = resultSet.getInt("CUSTOMER_ID");
+                String fName = resultSet.getString("FIRST_NAME");
                 //String fName = resultSet.getString(2); // same effect as line above
-                String lName = resultSet.getString("lastName");
-                Date dobAsDate = resultSet.getDate("dob");
+                String lName = resultSet.getString("LAST_NAME");
+                Date dobAsDate = resultSet.getDate("DATE_OF_BIRTH");
                 // Date is not the best type to use for a DOB.  LocalDate is better, so convert as follows:
                 LocalDate dob = dobAsDate.toLocalDate();
 
